@@ -18,11 +18,7 @@ public class AntiCheatImpl implements AntiCheat, Serializable {
 
 	public Context checkPlayer(Context context) throws ContextException, RemoteException {
 		final double velocity = (double) context.getValue(VELOCITY);
-
-		if (Math.abs(velocity) > MAX_VELOCITY) {
-			context.putValue(CHEAT_FLAG, true);
-		}
-
+		context.putValue(CHEAT_FLAG, Math.abs(velocity) > MAX_VELOCITY);
 		return context;
 	}
 }
