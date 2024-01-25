@@ -11,7 +11,7 @@ import sorcer.service.MonitorException;
 public class AssetStoreImpl implements AssetStore, Serializable {
     public Context buyAsset(Context context) throws ContextException, RemoteException, MonitorException {
         try {
-            context.put("transactionStatus", "Asset bought");
+            context.putValue("transactionStatus", "Asset bought");
             // More Asset-Store workflow logic
         } catch (Exception e) {
             throw new ContextException("Error processing context in AssetStoreImpl", e);

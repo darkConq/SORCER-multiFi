@@ -11,7 +11,7 @@ import sorcer.service.MonitorException;
 public class ServerHostingImpl implements ServerHosting, Serializable {
 	public Context hostServer(Context context) throws ContextException, RemoteException, MonitorException {
 		try {
-			context.put("serverStatus", "Access granted");
+			context.putValue("serverStatus", "Access granted");
 
 			// Additional server hosting logic can be implemented here
 

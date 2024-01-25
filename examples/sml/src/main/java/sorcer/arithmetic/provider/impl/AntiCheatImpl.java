@@ -7,7 +7,7 @@ import sorcer.service.Context;
 import sorcer.service.ContextException;
 
 @SuppressWarnings({ "rawtypes", "unchecked" })
-public class Arithmometer implements AntiCheat, Serializable {
+public class AntiCheatImpl implements AntiCheat, Serializable {
     private static final long serialVersionUID = -82252627979263L;
 	
 	public static final double MAX_VELOCITY = 300.0;

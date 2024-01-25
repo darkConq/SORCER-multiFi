@@ -36,6 +36,24 @@ public class ArithmeticMograms {
 	private Morpher mFi1Morpher;
 
 	@Test
+	public void pjEngineServices() throws Exception {
+		Task buyAssets = task("buyAssets", sig("buyAsset", AssetStoreImpl.class), context("buyAsset"),
+			result("transactionStatus", Signature.Direction.OUT));
+
+		Task host = task("host", sig("hostServer", ServerHostingImpl.class), context("hostServer"), result("serverStatus"),
+			Signature.Direction.OUT);
+		
+		Task checkPlayer = task("checkPlayer", sig("checkPlayer", AntiCheatImpl.class), context("checkPlayer",
+			inVal("playerdata/velocity")), result("playerdata/cheat_flag", Signature.Direction.OUT));
+		
+		Block block = block("block", buyAssets, host, checkPlayer, context(inVal("playerdata/velocity", 248.45)));
+		Block result = exert(block);
+		assertEquals(value(context(result), "transactionStatus"), "Asset bought");
+		assertEquals(value(context(result), "serverStatus"), "Access granted");
+		assertEquals(value(context(result), "playerdata/cheat_flag"), false);
+	}
+
+	@Test
 	public void evaluatorEntryModel() throws Exception {
 
 		Model mdl = model(
